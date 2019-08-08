@@ -1,2 +1,4 @@
 # db_rmd_example
-Mass generating multiple Rmd files from a database with a set of parmeters
+This is just an exmapple of mass generating multiple Rmd files from a database with a set of parmeters. I got it out for a friend to have a look at, then as I glanced over my old code I realised the clever bit was actually the switching between multiple child Rmd files depending on the database query result, as you generally want a different result generated if you have (for example) no things vs. one thing vs. many things, and you do not know what Rmd you need until the render is taking place and the Db query is being made.
+
+Uses RSQLite as a demonstration database. part1_setup.R creates the database (needs internet connection), part2_generateRmds.R is the demonstration control script, primary.Rmd is the starting Rmd file, but primary.Rmd loads one of the child Rmd files in the sections folder depending on the data it is working with.
