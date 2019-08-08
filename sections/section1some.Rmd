@@ -1,0 +1,11 @@
+
+## There are some records
+
+Because there are some records, so it makes sense to make a graph.
+
+But all I am going to do is show a count of the number of rows
+
+```{r}
+nrow(df)
+```
+

@@ -1,0 +1,11 @@
+
+## There is one record
+
+Because there is one recond, there is no point in making a graph.
+
+But we can show some of the record
+
+```{r}
+df %>% select(DATE, TIME,LAT,LONG) %>% kable()
+```
+

@@ -1,0 +1,6 @@
+
+## There are no records
+
+Because there are no reconds, there is no point in making a graph.
+
+No records, so I'm not bothering to write any code

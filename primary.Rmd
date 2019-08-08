@@ -1,0 +1,54 @@
+---
+output: html_document
+params:
+  startTime: "1910-01-01"
+  endTime: "2110-01-01"
+  person: "Noone"
+---
+# Example start
+
+This is a case switching example
+
+```{r loadlibrary, warnings=FALSE, message=FALSE}
+library(lubridate)
+library(dplyr)
+library(DBI)
+library(knitr)
+```
+
+Checking paramters passed in:
+
+```{r}
+str(params)
+```
+
+
+```{r getdata}
+mydb <- dbConnect(RSQLite::SQLite(), "xmpldb.sqlite")
+query <- paste0("SELECT * FROM boats WHERE OBS ='", params$person,"'")
+df <- dbGetQuery(mydb, query)
+dbDisconnect(mydb)
+
+###### 
+# there is no inbuilt date type in SQLlite.
+# !!!!
+df <- df %>% filter(dmy(DATE) >= ymd(params$startTime),
+                    dmy(DATE) <= ymd(params$endTime))
+
+prefix <- "some"
+if(nrow(df) == 0){
+  prefix <- "none"
+}
+if(nrow(df) == 1){
+  prefix <- "one"
+}
+
+
+
+section1 <- paste0("sections/section1", prefix,".Rmd")
+```
+
+```{r child=section1}
+
+```
+
